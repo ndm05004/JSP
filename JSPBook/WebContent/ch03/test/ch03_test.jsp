@@ -51,13 +51,13 @@
                                 	 
                                 	 <%
                                 	 	List<String> list = new ArrayList<>();
-                                	 	list.add("전지혜");list.add("신국현");list.add("이지영");list.add("김지완");	
-                                	 	list.add("이성일");list.add("신현근");list.add("박정수");list.add("변정민");	
-										list.add("정은지");list.add("조성희");list.add("박윤수");	list.add("조윤재");	
-										list.add("정재균");list.add("박승우");list.add("황지현");	list.add("김민정");	
-										list.add("김동혁");list.add("고영우");list.add("진현성");	list.add("이수진");	
-										list.add("오미나");list.add("김민욱");list.add("홍기태"); list.add("구기현");	
-										list.add("전다미");list.add("오대환");list.add("배문기");	list.add("유이현");	
+                                	 	list.add("전지혜"); list.add("신국현"); list.add("이지영"); list.add("김지완");	
+                                	 	list.add("이성일"); list.add("신현근"); list.add("박정수"); list.add("변정민");	
+										list.add("정은지"); list.add("조성희"); list.add("박윤수"); list.add("조윤재");	
+										list.add("정재균"); list.add("박승우"); list.add("황지현"); list.add("김민정");	
+										list.add("김동혁"); list.add("고영우"); list.add("진현성"); list.add("이수진");	
+										list.add("오미나"); list.add("김민욱"); list.add("홍기태"); list.add("구기현");	
+										list.add("전다미"); list.add("오대환"); list.add("배문기"); list.add("유이현");	
                                 	 %>
                                 	 <c:set value="<%=list%>" var="stdlist"/>
                                 	 
