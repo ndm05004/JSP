@@ -14,10 +14,7 @@
 JSP id Dynamic Web Page.
 JSP is Java Server Pages
 </pre>
-<p>JSP id Dynamic Web Page.
-</p>
-<p>JSP is Java Server Pages
-</p>
+
 
 </body>
 </html>
