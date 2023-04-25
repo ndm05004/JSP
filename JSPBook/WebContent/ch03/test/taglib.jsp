@@ -16,5 +16,11 @@
 	</c:if>
 </c:forEach>
 
+<c:forEach var="i" begin="1" end="10" step="1">
+	<c:if test="${i % 2 ==0 }">
+		<c:out value="${i }"></c:out>
+	</c:if>
+</c:forEach>
+
 </body>
 </html>
