@@ -8,24 +8,20 @@
 
 	// 1. 넘겨받은 폼 데이터 전부를 받아서 변수에 초기화해주세요.
 	//  - 초기화 하기 위한 변수는 아래 Book 클래스 newBook변수에 setter를 통해 담긴 변수를 참고해주세요.
-	
-	String id = request.getParameter("id");
 	BookRepository bookRepo = BookRepository.getInstance();
-	Book book = bookRepo.getBookById(id);
 	
-	String bookId = book.getBookId(); 		
-	String name = book.getBookId(); 		
-	String  unitPrice = book.getUnitPrice()+""; 
-	String author = book.getAuthor(); 		
-	String description= book.getDescription(); 
-	String publisher= book.getPublisher();
-	String category= book.getCategory();	
-	String   unitsInStock= book.getUnitsInStock()+"";
-	long   totalPages= book.getTotalPages();
-	String releaseDate= book.getReleaseDate();
-	String condition= book.getCondition();	
-	String filename= book.getFilename()	;
-	int quantity= book.getQuantity();	
+	String bookId = request.getParameter("bookId");		
+	String name = request.getParameter("name");		
+	String  unitPrice = request.getParameter("unitPrice");
+	String author = request.getParameter("author"); 		
+	String description= request.getParameter("description"); 
+	String publisher= request.getParameter("publisher");
+	String category= request.getParameter("category");	
+	String   unitsInStock= request.getParameter("unitsInStock");
+	String   totalPages= request.getParameter("totalPages");
+	String releaseDate= request.getParameter("releaseDate");
+	String condition= request.getParameter("condition");
+	String filename= request.getParameter("bookImage");
 	Integer price;
 
 	if (unitPrice.isEmpty())
@@ -49,7 +45,7 @@
 	newBook.setAuthor(author);
 	newBook.setPublisher(publisher);
 	newBook.setPublisher(releaseDate);
-	newBook.setTotalPages(totalPages);
+	newBook.setTotalPages(Integer.parseInt(totalPages));
 	newBook.setDescription(description);
 	newBook.setCategory(category);
 	newBook.setUnitsInStock(stock);
