@@ -43,5 +43,29 @@ public class ProductRepository {
 		
 	}
 	
+	// 전체 상품 조회
+	public ArrayList<Product> getAllProducts(){
+		return listOfProducts;
+	}
+	
+	// productId에 해당하는 상품 1개 조회
+	public Product getProductById(String productId) {
+		Product productById = null;
+		
+		for(int i=0; i < listOfProducts.size(); i++) {
+			Product product = listOfProducts.get(i);
+			if(product != null && product.getProductId() != null &&
+					product.getProductId().equals(productId)) {
+				productById = product;
+				break;	
+			}	
+		}
+		return productById;
+	}
+	
+	public void addProduct(Product product) {
+		listOfProducts.add(product);
+	}
+	
 
 }

@@ -1,3 +1,6 @@
+<%@page import="vo.Product"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="dao.ProductRepository"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="java.sql.*"%>
 <html>
@@ -12,15 +15,27 @@
 			<h1 class="display-3">상품 목록</h1>
 		</div>
 	</div>
+	
+	<%
+		ProductRepository productDAO = ProductRepository.getInstance();
+		ArrayList<Product> listOfProucts = productDAO.getAllProducts();
+	%>
+	
 	<div class="container">
 		<div class="row" align="center">
+		<%
+			for(int i=0; i< listOfProucts.size(); i++){
+				Product product = listOfProucts.get(i);
+		%>
 			<div class="col-md-4">
-				<img src="${pageContext.request.contextPath }/resources/images/<%-- P_FILENAME --%>" style="width: 98%">
-				<h3><%-- P_NAME --%></h3>
-				<p><%-- P_DESCRIPTION --%>
-				<p><%-- P_UNITPRICE --%>원
-				<p><a href="./product.jsp?id=<%-- P_ID --%>"class="btn btn-secondary" role="button">상세 정보 &raquo;></a>
+				<h3><%= product.getPname()%></h3>
+				<p><%= product.getDescription()%></p>
+				<p><%= product.getUnitPrice()%>원</p>
+				<p><a href="./product.jsp?id=<%=product.getProductId()%>"class="btn btn-secondary" role="button">상세 정보 &raquo;></a>
 			</div>
+			<%
+				}
+			%>
 		</div>
 		<hr>
 	</div>

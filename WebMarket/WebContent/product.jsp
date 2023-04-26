@@ -14,21 +14,25 @@
 			<h1 class="display-3">상품 정보</h1>
 		</div>
 	</div>
+	
+	<%
+		String id = request.getParameter("id"); // 상품 id를 꺼낸다.
+		ProductRepository productDAO = ProductRepository.getInstance();
+		Product product = productDAO.getProductById(id);
+	%>
+	
 	<div class="container">
 		<div class="row">
-			<div class="col-md-5">
-				<img src='${pageContext.request.contextPath }/resources/images/<%-- P_FILENAME --%>' style="width: 100%" />
-			</div>
 			<div class="col-md-6">
-				<h3><%-- <%-- P_FILENAME --%></h3>
-				<p><%-- P_DESCRIPTION --%></p>
-				<p><b>상품 코드 : </b><span class="badge badge-danger"> <%-- P_ID --%></span></p>
-				<p><b>제조사</b> : <%-- P_MANUFACTURER --%></p>
-				<p><b>분류</b> : <%-- P_CATEGORY --%></p>
-				<p><b>재고 수</b> : <%-- P_UNITSINSTOCK --%></p>
-				<h4><%-- P_UNITPRICE --%>원</h4>
+				<h3><%= product.getPname()%></h3>
+				<p><%= product.getDescription()%></p>
+				<p><b>상품 코드 : </b><span class="badge badge-danger"> <%= product.getProductId()%></span></p>
+				<p><b>제조사</b> : <%= product.getManufacturer()%></p>
+				<p><b>분류</b> : <%= product.getCategory()%></p>
+				<p><b>재고 수</b> : <%= product.getUnitsInStock()%></p>
+				<h4><%= product.getUnitsInStock()%>원</h4>
 				<p>
-					<form name="addForm" action='./addCart.jsp?id=<%-- P_ID --%>' method="post">
+					<form name="addForm" action='./addCart.jsp?id=<%= product.getProductId()%>' method="post">
 						<a href="#" class="btn btn-info"> 상품 주문 &raquo;</a>
 						<a href="./cart.jsp" class="btn btn-warning"> 장바구니 &raquo;</a> 
 						<a href="./products.jsp" class="btn btn-secondary"> 상품 목록 &raquo;</a>
