@@ -1,7 +1,7 @@
+<%@page import="dto.Book"%>
 <%@page import="dao.BookRepository"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="java.util.ArrayList"%>
-<%@page import="dto.Book"%>
 
 <html>
 <head>
@@ -46,7 +46,7 @@
 				 <%=bookList.get(i).getUnitPrice() %>
 			</div>	
 			<div class="col-md-2"  style="padding-top: 60px">						    			 
-				<a href="./book.jsp?id=<!-- 책 id 출력(BookId) -->" class="btn btn-secondary" role="button"> 상세정보 &raquo;></a>				
+				<a href="./book.jsp?id=<%=bookList.get(i).getBookId() %>" class="btn btn-secondary" role="button"> 상세정보 &raquo;></a>				
 			</div>				
 		</div>
 		<hr>

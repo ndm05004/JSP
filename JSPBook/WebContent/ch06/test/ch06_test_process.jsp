@@ -1,13 +1,9 @@
-<%@page import="java.util.ArrayList"%>
-<%@page import="com.sun.xml.internal.bind.v2.schemagen.xmlschema.List"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
-<%@page import="java.util.Enumeration"%>
+<%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,63 +33,75 @@
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">
-                                    	input 태그의 기능과 사용법
+                                    	input 태그의 기능과 사용법(form)
                                     </h6>
                                 </div>
                                 <div class="card-body">
- 								<%  
-                            		request.setCharacterEncoding("UTF-8");
-                                %>	
-        <c:if test="${empty name or empty id or empty pw}">
-                          <script>
-                            alert("필수 입력 항목을 모두 입력해주세요.");
-                            history.back();
-                          </script>
-                        </c:if>
-                                
-                               	<p>아이디: <c:out value="${param.id }"/><p/>
-				                <p>비밀번호: <c:out value="${param.pw }"/>
-				                <p>이름: <c:out value="${param.name }"/>
-				                <p>연락처: <c:out value="${param.phone1 }"/>-<c:out value="${param.phone2 }"/>-<c:out value="${param.phone3 }"/> 
-				                <p>이메일: <c:out value="${param.mail }"/>
-				                
-				                <c:set var="hobby" value="${paramValues.hobby}"/>
-								<p>취미:
-									<c:forEach items="${hobby}" var="hobbyItem">
-										<c:out value="${hobbyItem}" />
-									</c:forEach>
-				               </p>
-				                <p>성별: <c:out value="${param.gender }"/>
-				                <p>소개: <c:out value="${param.comment }"/>
-				                
-                                <!-- 
-                                	1) 아래 형태처럼 데이터를 출력해주세요
-                                	아이디:
-                                	비밀번호:
-                                	이름:
-                                	연락처: 000-0000-0000
-                                	이메일:
-                                	성별:
-                                	취미:
-                                	소개:
-                             		
-                             		위와 같은 형식으로 출력하고
-                             		
-                             		2) 아이디, 비밀번호, 이름 중 1개라도 누락했을 경우
-                             			다시 ch06_test.jsp로 넘어가 "아이디, 비밀번호, 이름 중 1개의 값이 누락되었습니다"
-                             			메시지가 표시될 수 있도록 해주세요.
-                             			
-                             		3) 테스트 시나리오
-                             			1) 정상적으로 데이터를 입력하여 데이터가 넘어가 정상적으로 출력되는걸 확인
-                             			2) 아이디 비밀번호 이름 중 1개를 누락 후 전송 시, ch06_test.jsp 페이지에서
-                             					"아이디, 비밀번호, 이름 중 1개의 값이 누락되었습니다" 메시지를 확인한다.
-                             		
-                             		4) 출력은 JSTL과 EL을 이용하여 출력해주세요.
-                                 -->
-                                 
-                                 
-                                 
-                                	</table>
+                                	<%
+                                  	request.setCharacterEncoding("UTF-8");
+                                    
+                                	String id = request.getParameter("id");
+                                    String pw = request.getParameter("pw");
+                                    String name = request.getParameter("name");
+                                    String phone1 = request.getParameter("phone1");
+                                    String phone2 = request.getParameter("phone2");
+                                    String phone3 = request.getParameter("phone3");
+                                    String gender = request.getParameter("gender");
+                                    String[] hobby = request.getParameterValues("hobby");
+                                    String comment = request.getParameter("comment");
+                                    
+                                    Map<String, String> errors = new HashMap<String, String>();
+                                    
+                                    if(id.equals("")){
+                                    	errors.put("id", "아이디가 누락되었습니다!");
+                                    }
+                                    if(pw.equals("")){
+                                    	errors.put("pw", "비밀번호가 누락되었습니다!");
+                                    }
+                                    if(name.equals("")){
+                                    	errors.put("name", "이름이 누락되었습니다!");
+                                    }
+                                    
+                                    if(errors.size() > 0){	// 에러가 존재한다
+                                    	request.setAttribute("errors", errors);
+                                    	request.getRequestDispatcher("./ch06_test.jsp?err=1").forward(request, response);
+                                    }
+                                	%>
+                                	
+                                	<p>넘겨받은 파라미터 값을 el로 바로 출력할 수 있을까?</p>
+                                	id : ${id } <br/>
+                                	request : ${requestScope.id }<br/>
+                                	
+                                	<br/><hr/>
+                                	
+                                	<c:set value="<%=id %>" var="ids"/>
+                                	ids : ${ids }<br/>
+                                	param : ${param.id }<br/>
+                                	<p>아이디 : <%=id %></p>
+                                	<p>비밀번호 : <%=pw %></p>
+                                	<p>이름 : <%=name %></p>
+                                	<p>연락처 : <%=phone1 %>-<%=phone2 %>-<%=phone3 %></p>
+                                	<p>성별 : <%=gender %></p>
+                                	<p>취미 : (스크립틀릿으로 출력)</p>
+                                	<%
+                                		if(hobby != null){
+                                			for(int i = 0; i < hobby.length; i++){
+                                				out.println(" " + hobby[i]);
+                                			}
+                                		}
+                                	%>
+                                	<p>가입인사 : <%=comment %></p>
+                                	<br/><hr/>
+                                	
+                                	<c:set var="id" value="<%=id %>"/>
+                                	<c:set var="pw" value="<%=pw %>"/>
+                                	<c:set var="name" value="<%=name %>"/>
+                                	<c:set var="phone1" value="<%=phone1 %>"/>
+	
+									<p>아이디 : ${id }</p>
+                                	<p>비밀번호 : ${pw }</p>
+                                	<p>이름 : ${name }</p>
+                                	<p>연락처 : ${phoen1 }</p>                                	
                                 </div>
                             </div>
                         </div>

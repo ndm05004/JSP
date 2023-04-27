@@ -8,7 +8,20 @@
 
 	// 1. 넘겨받은 폼 데이터 전부를 받아서 변수에 초기화해주세요.
 	//  - 초기화 하기 위한 변수는 아래 Book 클래스 newBook변수에 setter를 통해 담긴 변수를 참고해주세요.
+	BookRepository bookRepo = BookRepository.getInstance();
 	
+	String bookId = request.getParameter("bookId");		
+	String name = request.getParameter("name");		
+	String  unitPrice = request.getParameter("unitPrice");
+	String author = request.getParameter("author"); 		
+	String description= request.getParameter("description"); 
+	String publisher= request.getParameter("publisher");
+	String category= request.getParameter("category");	
+	String   unitsInStock= request.getParameter("unitsInStock");
+	String   totalPages= request.getParameter("totalPages");
+	String releaseDate= request.getParameter("releaseDate");
+	String condition= request.getParameter("condition");
+	String filename= request.getParameter("bookImage");
 	Integer price;
 
 	if (unitPrice.isEmpty())
@@ -32,14 +45,14 @@
 	newBook.setAuthor(author);
 	newBook.setPublisher(publisher);
 	newBook.setPublisher(releaseDate);
-	newBook.setPublisher(totalPages);
+	newBook.setTotalPages(Integer.parseInt(totalPages));
 	newBook.setDescription(description);
 	newBook.setCategory(category);
 	newBook.setUnitsInStock(stock);
 	newBook.setCondition(condition);
-	newBook.setFilename(fileName);
+	newBook.setFilename(filename);
 
 	// 2. 책 1권의 정보가 담긴 자바빈즈 객체를 리스트에 저장해주세요.
-
+	bookRepo.addBook(newBook);
 	response.sendRedirect("books.jsp");
 %>

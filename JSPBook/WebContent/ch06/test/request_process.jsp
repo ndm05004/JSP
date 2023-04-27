@@ -9,6 +9,8 @@
 <body>
 
 <%
+	request.setCharacterEncoding("UTF-8");
+	
 	out.print("전송된 요청 파라미터"+request.getQueryString());
 %>
 
