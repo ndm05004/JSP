@@ -36,7 +36,7 @@
 	String id = request.getParameter("id");
 	if(id!=null){
 %>
-	<script> alert("환영합니다.")</script>
+	<script> alert("${param.id} 환영합니다.")</script>
 <%
 	}
 	MemberDAO dao = MemberDAO.getInstance();

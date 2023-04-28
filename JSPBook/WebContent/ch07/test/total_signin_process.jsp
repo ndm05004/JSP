@@ -37,20 +37,25 @@
 	ArrayList<MemberVO> memList =  dao.getMemberList();
 	
 	boolean foundMember = false;
-	for(int i=0; i<memList.size(); i++){
-	    String checkId = memList.get(i).getMem_id();
-	    String checkPw = memList.get(i).getMem_pw();
-	    if(checkId.equals(id)&&checkPw.equals(pw)){
-	        foundMember = true;
-	        break;
-	    }
-	}
-
-	if(foundMember){
-	    request.getRequestDispatcher("total_memberList.jsp").forward(request, response);
+	if(memList.size() > 0) {
+		for(int i=0; i<memList.size(); i++){
+		    String checkId = memList.get(i).getMem_id();
+		    String checkPw = memList.get(i).getMem_pw();
+		    if(checkId.equals(id)&&checkPw.equals(pw)){
+		        foundMember = true;
+		        break;
+		    }
+		}
+		if(foundMember){
+		    request.getRequestDispatcher("total_memberList.jsp").forward(request, response);
+		}else{
+		    request.getRequestDispatcher("total_signi.jsp?flag=1").forward(request, response);
+		}
 	}else{
 	    request.getRequestDispatcher("total_signi.jsp?flag=1").forward(request, response);
 	}
+
+	
 	
 %>
 
