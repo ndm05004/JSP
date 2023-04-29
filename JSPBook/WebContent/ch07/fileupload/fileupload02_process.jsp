@@ -15,6 +15,8 @@
 <%
 	String fileuploadPath =  request.getServletContext().getRealPath("/ch07/test/img");
 
+	System.out.print(fileuploadPath);
+
 	File tempFile = new File(fileuploadPath);
 	if(!tempFile.exists()){
 		tempFile.mkdirs();
@@ -35,7 +37,20 @@
 		
 		String fileFieldName = fileItem.getFieldName();
 		String fileName = fileItem.getName();
-		String 
+		String contentType = fileItem.getContentType();
+		long fileSize = fileItem.getSize();
+		
+		File file = new File(fileuploadPath + "/" + fileName);
+		if(maxSize < fileSize){
+			out.println("파일 크기를 초과하였습니다!<br>");
+		}else{
+			fileItem.write(file);
+		}
+		out.println("------------------------------------<br>");
+		out.println("요청 파라미터 이름"+fileFieldName +"<br>");
+		out.println("저장 파일 이름 "+fileName+"<br>");
+		out.println("파일 콘텐츠 타입"+contentType+"<br>");
+		out.println("파일크기"+fileSize+"<br>");	
 	}
 	
 %>
