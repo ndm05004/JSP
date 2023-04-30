@@ -28,10 +28,12 @@
 		for(int i=0; i<bookList.size(); i++){
 	%>
 		<div class="row">
-			<div class="col-md-10">	
-				<p><h5 ><b>[<!-- 책 카테고리를 출력(category) --> 
-				<%=bookList.get(i).getCategory() %>
-				] <!-- 책 제목을 출력(name) -->
+			<div class="col-md-5">
+				<img src="${pageContext.request.contextPath}/resources/images/<%=bookList.get(i).getFilename() %>" style="width:100%"/>
+			</div>
+			<div class="col-md-6" >
+				<p><h5 ><b>[<!-- 책 카테고리를 출력(category) --> <%=bookList.get(i).getCategory() %>] 
+				<!-- 책 제목을 출력(name) -->
 				<%=bookList.get(i).getName() %>
 				</b></h5>
 				<p style="padding-top: 10px"><!-- 책 내용을 출력(description) -->
