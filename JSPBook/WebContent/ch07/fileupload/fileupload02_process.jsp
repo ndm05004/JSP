@@ -13,9 +13,8 @@
 </head>
 <body>
 <%
-	String fileuploadPath =  request.getServletContext().getRealPath("/ch07/test/img");
-
-	System.out.print(fileuploadPath);
+	//String fileuploadPath = "C:/img";
+	String fileuploadPath =  request.getServletContext().getRealPath("/img");
 
 	File tempFile = new File(fileuploadPath);
 	if(!tempFile.exists()){
@@ -52,6 +51,8 @@
 		out.println("파일 콘텐츠 타입"+contentType+"<br>");
 		out.println("파일크기"+fileSize+"<br>");	
 	}
+
+	
 	
 %>
 </body>

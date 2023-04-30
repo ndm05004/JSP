@@ -10,7 +10,7 @@
 
 	<form action="fileupload02_process.jsp" name="fileupload" method="post" enctype="multipart/form-data">
 	
-	파일 : <input type="file" value="찾아보기..."/><br/>
+	파일 : <input type="file" name="filename" value="찾아보기..."/><br/>
 	<input type="submit" value="파일 올리기">
 	</form>
 
